@@ -37,10 +37,6 @@ local mastery = Window:MakeTab({
     Name = "精通手套",
     PremiumOnly = false
 })
-local altscript = Window:MakeTab({
-	Name = "分支腳本",
-	PremiumOnly = false
-})
 local Script = Window:MakeTab({
 	Name = "常用腳本",
 	PremiumOnly = false
@@ -567,10 +563,3 @@ troll:AddButton({
     end
 end
 })
-altscript:AddButton({
-	Name = "導遊腳本",
-	Callback = function()
-    loadstring(game:HttpGet(("https://raw.githubusercontent.com/rty-lol/script/refs/heads/main/.gitignore")))()
-    end
-})
-
