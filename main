@@ -16,10 +16,12 @@ script:AddButton({
 	Callback = function()
     loadstring(game:HttpGet(("https://raw.githubusercontent.com/rty-lol/script/refs/heads/main/catlyn%20script%20remake")))()
     end
+OrionLib:Destroy()
 })
 script:AddButton({
 	Name = "導遊腳本",
 	Callback = function()
     loadstring(game:HttpGet(("https://raw.githubusercontent.com/rty-lol/script/refs/heads/main/.gitignore")))()
     end
+OrionLib:Destroy()
 })
