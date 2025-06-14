@@ -29,6 +29,6 @@ script:AddButton({
 	Name = "巴西腳本",
 	Callback = function()
     loadstring(game:HttpGet(("https://raw.githubusercontent.com/rty-lol/script/refs/heads/main/sc%20brazil")))()
-    end
-    OrionLib:Destroy()
+OrionLib:Destroy()    
+end
 })
