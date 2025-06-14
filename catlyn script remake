@@ -454,7 +454,7 @@ end
 	end    
 })
 badge:AddButton({
-	Name = "slash手套",
+	Name = "slasher手套",
 	Callback = function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/catlyn316/Slasher-glove/refs/heads/main/Slasher'))()
   	end    
