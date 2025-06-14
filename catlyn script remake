@@ -1,0 +1,576 @@
+local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit;local v4=v3.bxor or v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v9,v10)local v13={};for v14=1, #v9 do v6(v13,v0(v4(v1(v2(v9,v14,v14 + ((2303 -(42 + 681)) -(1497 + 82)))),v1(v2(v10,1 + ((v14-((1165 -(1160 + 4)) -0))% #v10),1 + 0 + ((v14-1)% #v10) + (3 -2) + 0)))%((625 -462) + (207 -114))));end return v5(v13);end local v8=game:GetService(v7("\18\84\220\61\87\253\234","\66\56\189\68\50\143\153")).LocalPlayer;for v11,v12 in pairs(game:GetService(v7("\119\57\223\245\220\80\55\206\251","\32\86\173\158\175")):GetDescendants()) do if v12:IsA(v7("\155\93\196\220\10\174\90\217\196","\207\56\188\168\70")) then local v15=0;local v16;while true do if ((0 -(0 + 0))==v15) then v16={v8.Name,v8.DisplayName};for v17,v18 in pairs(v16) do if v12.Text:lower():find(v18:lower()) then v12.Parent:Destroy();end end break;end end end end
+local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua")))()
+local Window = OrionLib:MakeWindow({IntroText = "貓玲的腳本 Remake", Name = "貓玲的腳本 Remake", HidePremium = false, SaveConfig = true, ConfigFolder = "貓玲的腳本 Remake"})
+OrionLib:MakeNotification({
+	Name = "腳本已載入!",
+	Content = "擁有者:貓玲",
+	Image = "IntroIcon = rbxassetid://15315284749",
+	Time = 5
+})
+
+
+local TP = Window:MakeTab({
+	Name = "傳送",
+	PremiumOnly = false
+})
+
+local Anti = Window:MakeTab({
+    Name = "基礎",
+    PremiumOnly = false
+})
+local troll = Window:MakeTab({
+    Name = "其他",
+    PremiumOnly = false
+})
+local misc = Anti:AddSection({
+	Name = "屬性",
+})
+local Antivoid = Anti:AddSection({
+	Name = "防虛空(一次僅開一個!)",
+})
+
+local badge = Window:MakeTab({
+    Name = "徽章手套",
+    PremiumOnly = false
+})
+local mastery = Window:MakeTab({
+    Name = "精通手套",
+    PremiumOnly = false
+})
+local altscript = Window:MakeTab({
+	Name = "分支腳本",
+	PremiumOnly = false
+})
+local Script = Window:MakeTab({
+	Name = "常用腳本",
+	PremiumOnly = false
+})
+local Afk = Anti:AddSection({
+	Name = "防掛機",
+})
+
+TP:AddButton({
+	Name = "創建安全區",
+	Callback = function()      	
+        Platform = Instance.new("Part")
+		Platform.Size = Vector3.new(5000, 5, 5000)
+        Platform.Position = Vector3.new(5122, 110, 9513)
+        Platform.Anchored = true
+        Platform.CanCollide = true
+        Platform.Transparency = 0.5
+        Platform.Material = Enum.Material.SmoothPlastic
+        Platform.Color = Color3.fromRGB(150, 150, 150)
+        Platform.Name = "CustomPlatform"
+        Platform.Parent = Workspace
+end
+})
+TP:AddButton({
+	Name = "傳送至安全區(先創建才能傳送至安全區!)",
+	Callback = function()      	
+    local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+    rootPart.CFrame = CFrame.new(5122, 115, 9513)
+	end
+})
+TP:AddDropdown({
+	Name = "傳送",
+	Default = "",
+	Options = {"戰鬥場", "大廳", "地下室", "巴西", "果實島", "盤子", "大砲島", "密碼板", "摩埃島", "前島", "右島", "左島"},
+	Callback = function(Value)
+if Value == "戰鬥場" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Origo.CFrame * CFrame.new(0,-5,0)
+elseif Value == "大廳" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-800,328,-2.5)
+elseif Value == "地下室" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.BountyHunterRoom.Union.CFrame * CFrame.new(0,5,0)
+elseif Value == "巴西" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Lobby.brazil.portal.CFrame
+elseif Value == "果實島" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Arena.island5.Union.CFrame * CFrame.new(0,3.25,0)
+elseif Value == "盤子" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Arena.Plate.CFrame
+elseif Value == "大砲島" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Arena.CannonIsland.Cannon.Base.CFrame * CFrame.new(0,0,35)
+elseif Value == "密碼板" then
+if not workspace:FindFirstChild("Keypad") then
+OrionLib:MakeNotification({Name = "Error",Content = "Server in don't have keypad.",Image = "rbxassetid://7733658504",Time = 5})
+else
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Keypad.Buttons.Enter.CFrame
+end
+elseif Value == "摩埃島" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(215, -15.5, 0.5)
+elseif Value == "前島" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-211.210846, -5.27827597, 4.13719559, -0.0225322824, 1.83683113e-08, -0.999746144, -1.83560154e-08, 1, 1.87866842e-08, 0.999746144, 1.87746618e-08, -0.0225322824)
+elseif Value == "右島" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-8.17191315, -5.14452887, -205.249741, -0.98216176, -3.48867246e-09, -0.188037917, -4.19987778e-09, 1, 3.38382322e-09, 0.188037917, 4.11319823e-09, -0.98216176)
+elseif Value == "左島" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6.66747713, -5.06731462, 213.575378, 0.945777893, 2.52095178e-10, 0.324814111, -3.7823856e-08, 1, 1.09357536e-07, -0.324814111, -1.15713661e-07, 0.945777893)
+end
+	end    
+})
+
+Antivoid:AddButton({
+	Name = "防虛空(開)",
+	Callback = function()
+      	generatedPlatform = Instance.new("Part")
+        generatedPlatform.Size = Vector3.new(5000, 2, 5000)
+        generatedPlatform.Position = Vector3.new(0, -10, 0)
+        generatedPlatform.Anchored = true
+        generatedPlatform.CanCollide = true
+        generatedPlatform.Transparency = 0.3
+        generatedPlatform.Material = Enum.Material.SmoothPlastic
+        generatedPlatform.Color = Color3.fromRGB(150, 150, 150)
+        generatedPlatform.Name = "CustomPlatform"
+        generatedPlatform.Parent = Workspace
+  	end    
+})
+misc:AddSlider({
+	Name = "移動速度",
+	Min = 20,
+	Max = 200,
+	Default = 20,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "studs/秒",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+	end    
+})
+misc:AddSlider({
+	Name = "跳躍高度",
+	Min = 50,
+	Max = 200,
+	Default = 50,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "studs",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
+	end    
+})
+misc:AddTextbox({
+	Name = "飛行速度",
+	Default = "Userspeed",
+	TextDisappear = false,
+	Callback = function(Value)
+_G.SetSpeedFly = Value
+	end	  
+})
+
+_G.SetSpeedFly = 100
+misc:AddToggle({
+	Name = "飛行",
+	Default = false,
+	Callback = function(Value)
+	 _G.StartFly = Value
+if _G.StartFly == false then
+if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler:Destroy()
+game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler:Destroy()
+game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+end
+end
+while _G.StartFly do
+if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.MaxForce = Vector3.new(9e9,9e9,9e9)
+game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.MaxTorque = Vector3.new(9e9,9e9,9e9)
+game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
+game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.CFrame = Workspace.CurrentCamera.CoordinateFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = Vector3.new()
+if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X > 0 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + game.Workspace.CurrentCamera.CFrame.RightVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X * _G.SetSpeedFly)
+end
+if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X < 0 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + game.Workspace.CurrentCamera.CFrame.RightVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X * _G.SetSpeedFly)
+end
+if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z > 0 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - game.Workspace.CurrentCamera.CFrame.LookVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z * _G.SetSpeedFly)
+end
+if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z < 0 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - game.Workspace.CurrentCamera.CFrame.LookVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z * _G.SetSpeedFly)
+end
+elseif game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") == nil and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") == nil then
+local bv = Instance.new("BodyVelocity")
+local bg = Instance.new("BodyGyro")
+
+bv.Name = "VelocityHandler"
+bv.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+bv.MaxForce = Vector3.new(0,0,0)
+bv.Velocity = Vector3.new(0,0,0)
+
+bg.Name = "GyroHandler"
+bg.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+bg.MaxTorque = Vector3.new(0,0,0)
+bg.P = 1000
+bg.D = 50
+end
+task.wait()
+end
+	end    
+})
+Antivoid:AddButton({
+	Name = "防虛空(關)",
+	Callback = function()
+    generatedPlatform:Destroy()
+    generatedPlatform = nil
+end
+})
+Antivoid:AddButton({
+	Name = "防虛空假死亡(開)",
+	Callback = function()
+      	generatedPlatform = Instance.new("Part")
+        generatedPlatform.Size = Vector3.new(5000, 2, 5000)
+        generatedPlatform.Position = Vector3.new(0, -85, 0)
+        generatedPlatform.Anchored = true
+        generatedPlatform.CanCollide = true
+        generatedPlatform.Transparency = 0.3
+        generatedPlatform.Material = Enum.Material.SmoothPlastic
+        generatedPlatform.Color = Color3.fromRGB(150, 150, 150)
+        generatedPlatform.Name = "CustomPlatform"
+        generatedPlatform.Parent = Workspace
+  	end    
+})
+Antivoid:AddButton({
+	Name = "防虛空假死亡(關)",
+	Callback = function()
+    generatedPlatform:Destroy()
+    generatedPlatform = nil
+end
+})
+AntiTime = Anti:AddToggle({
+	Name = "防時停，停止",
+	Default = false,
+	Callback = function(Value)
+	_G.AntiTimestop = Value
+while _G.AntiTimestop do
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v.ClassName == "Part" then
+                        v.Anchored = false
+                    end
+                end
+task.wait()
+end
+	end    
+})
+AntiNull = Anti:AddToggle({
+	Name = "防null",
+	Default = false,
+	Callback = function(Value)
+_G.AntiNull = Value
+while _G.AntiNull do
+for i,v in pairs(game.Workspace:GetChildren()) do
+                if v.Name == "Imp" and v:FindFirstChild("Body") then
+                       gloveHits[game.Players.LocalPlayer.leaderstats.Glove.Value]:FireServer(v.Body,true)
+                 end
+            end
+task.wait()
+end
+	end    
+})
+Afk:AddButton({
+	Name = "防掛機",
+	Callback = function()
+    virtualUser:Button2Down(Vector2.new(0, 0), Workspace.CurrentCamera.CFrame)
+        task.wait(1)
+        virtualUser:Button2Up(Vector2.new(0, 0), Workspace.CurrentCamera.CFrame)
+    end
+})
+troll:AddToggle({
+	Name = "自動點大亨",
+	Default = false,
+	Callback = function(Value)
+		_G.AutoClickTycoon = Value
+if _G.TycoonAuto == "All" then
+while _G.AutoClickTycoon and _G.TycoonAuto == "All" do
+for _,v in pairs(game.Workspace:GetChildren()) do
+if string.find(v.Name, "ÅTycoon") and v:FindFirstChild("Click") then
+fireclickdetector(v.Click.ClickDetector, 0)
+fireclickdetector(v.Click.ClickDetector, 1)
+end
+end
+task.wait()
+end
+elseif _G.TycoonAuto == "Your" then
+while _G.AutoClickTycoon and _G.TycoonAuto == "Your" do
+for _,v in pairs(game.Workspace:GetChildren()) do
+if v.Name:match(game.Players.LocalPlayer.Name) and v:FindFirstChild("Click") then
+fireclickdetector(v.Click.ClickDetector, 0)
+fireclickdetector(v.Click.ClickDetector, 1)
+end
+end
+for _,v in pairs(game.Workspace:GetChildren()) do
+if v.Name:match(game.Players.LocalPlayer.Name) then
+for i,x in pairs(v:GetChildren()) do
+if x.Name == "TycoonDrop" then
+x.CFrame = v.End.CFrame
+end
+end
+end
+end
+task.wait()
+end
+end
+	end    
+})
+troll:AddButton({
+	Name = "破壞所有大亨",
+	Callback = function()
+for i,v in pairs(workspace:GetDescendants()) do
+if v.Name == "Destruct" and v:FindFirstChild("ClickDetector") then
+for i = 1,110 do
+fireclickdetector(v.ClickDetector)
+end
+end
+end
+  	end    
+})
+troll:AddButton({
+	Name = "所有人變成Sbeve",
+	Callback = function()
+if game.Players.LocalPlayer.leaderstats.Glove.Value == "Sbeve" or game.Players.LocalPlayer.Character:FindFirstChild("stevebody") then
+for i,v in pairs(game.Players:GetChildren()) do
+         if v ~= game.Players.LocalPlayer and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and v.Character then
+              if v.Character:FindFirstChild("entered") and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("stevebody") == nil and v.Character:FindFirstChild("rock") == nil and v.Character.Ragdolled.Value == false then
+                 v.Character.HumanoidRootPart.CanCollide = false
+                 v.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.stevebody.CFrame
+              end
+          end
+     end
+ end
+  	end    
+})
+troll:AddButton({
+	Name = "將他人踢出(Za Hando)",
+	Callback = function()
+if game.Players.LocalPlayer.leaderstats.Glove.Value == "Za Hando" then
+OGWS = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
+OGJP = game.Players.LocalPlayer.Character.Humanoid.JumpPower
+OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+for i,v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
+v.CanTouch = false
+end
+game:GetService("ReplicatedStorage").Erase:FireServer()
+wait(0.47)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 0
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 0
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-725,310,-2)
+wait(3.75)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = OGWS
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = OGJP
+for i,v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
+v.CanTouch = true
+end
+else
+OrionLib:MakeNotification({Name = "Error",Content = "請使用Za Hando.",Image = "rbxassetid://7733658504",Time = 5})
+end
+  	end    
+})
+
+mastery:AddButton({
+	Name = "閃光(任務二)",
+	Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/catlyn316/Flash-mastery/refs/heads/main/Flash%20second%20task'))()
+  	end    
+})
+mastery:AddButton({
+	Name = "加速器",
+	Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/catlyn316/Need-baller/refs/heads/main/Need%20baller%20to%20farm%20booster%20mastery"))()
+  	end    
+})
+mastery:AddButton({
+	Name = "空間",
+	Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/catlyn316/Space-mastery/refs/heads/main/Space%20mastery%20no%20need%20baller%20but%20alt'))()
+  	end    
+})
+mastery:AddButton({
+	Name = "冰霜",
+	Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/catlyn316/Shard-mastery/refs/heads/main/Shard%20mastery'))()
+  	end    
+})
+mastery:AddButton({
+	Name = "巴士",
+	Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/catlyn316/Bus-mastery-need-null-help/refs/heads/main/Bus%20mastery'))()
+  	end    
+})
+mastery:AddButton({
+	Name = "階段",
+	Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/catlyn316/Phase-mastery/refs/heads/main/Phase%20mastery'))()
+  	end    
+})
+mastery:AddButton({
+	Name = "大亨,蜜蜂",
+	Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/catlyn316/Tycoon-and-hive-mastery/refs/heads/main/Tycoon%2Bhive%20mastery'))()
+  	end    
+})
+Script:AddButton({
+	Name = "giang hub",
+	Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Giangplay/Slap_Battles/main/Slap_Battles.lua",true))()
+  	end    
+})
+Script:AddButton({
+	Name = "Kyky Hub",
+	Callback = function()
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Slap-Battles-KykyryzoB-Hub-SB-9008"))()
+  	end    
+})
+badge:AddButton({
+	Name = "eggler手套",
+	Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/catlyn316/Eggler-badge-glove/refs/heads/main/Eggler%20badge%20glove'))()
+  	end    
+})
+badge:AddButton({
+	Name = "bob手套",
+	Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/catlyn316/Bob-glove/refs/heads/main/Bob%20glove'))()
+  	end    
+})
+badge:AddButton({
+	Name = "slender手套",
+	Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/catlyn316/Slender-glove/refs/heads/main/Slender%20glove'))()
+  	end    
+})
+badge:AddToggle({
+	Name = "大亨手套",
+	Default = false,
+	Callback = function(Value)
+	   _G.AutoTpPlate = Value
+if game.Players.LocalPlayer.Character:FindFirstChild("entered") and #game.Players:GetPlayers() >= 7 then
+while _G.AutoTpPlate do
+if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("entered") and #game.Players:GetPlayers() >= 7 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Arena.Plate.CFrame
+end
+task.wait()
+end
+elseif _G.AutoTpPlate == true then
+OrionLib:MakeNotification({Name = "Error",Content = "You need enter erane, or 7 people the server",Image = "rbxassetid://7733658504",Time = 5})
+wait(0.05)
+AutoTycoon:Set(false)
+end
+	end    
+})
+troll:AddButton({
+	Name = "清空你的名稱",
+	Callback = function()
+    local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit;local v4=v3.bxor or v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v9,v10)local v13={};for v14=1, #v9 do v6(v13,v0(v4(v1(v2(v9,v14,v14 + ((2303 -(42 + 681)) -(1497 + 82)))),v1(v2(v10,1 + ((v14-((1165 -(1160 + 4)) -0))% #v10),1 + 0 + ((v14-1)% #v10) + (3 -2) + 0)))%((625 -462) + (207 -114))));end return v5(v13);end local v8=game:GetService(v7("\18\84\220\61\87\253\234","\66\56\189\68\50\143\153")).LocalPlayer;for v11,v12 in pairs(game:GetService(v7("\119\57\223\245\220\80\55\206\251","\32\86\173\158\175")):GetDescendants()) do if v12:IsA(v7("\155\93\196\220\10\174\90\217\196","\207\56\188\168\70")) then local v15=0;local v16;while true do if ((0 -(0 + 0))==v15) then v16={v8.Name,v8.DisplayName};for v17,v18 in pairs(v16) do if v12.Text:lower():find(v18:lower()) then v12.Parent:Destroy();end end break;end end end end
+	end
+})
+troll:AddButton({
+	Name = "全部改名",
+	Callback = function()
+    local localPlayer = game:GetService("Players").LocalPlayer
+    
+    -- Function to change a player's nametag
+    local function changePlayerName(character)
+        -- Skip the local player
+        if localPlayer.Character and character == localPlayer.Character then
+            return
+        end
+        
+        if character:FindFirstChild("Head") then
+            if character.Head:FindFirstChild("Nametag") then
+                if character.Head.Nametag:FindFirstChild("Labels") then
+                    if character.Head.Nametag.Labels:FindFirstChild("TopLabel") then
+                        character.Head.Nametag.Labels.TopLabel.Text = "catlyn's helper"
+                    end
+                end
+            end
+        end
+    end
+    
+    -- Function to change all current players' nametags
+    local function changeAllPlayerNames()
+        local players = game:GetService("Workspace"):GetChildren()
+        for _, player in pairs(players) do
+            if player:IsA("Model") and player:FindFirstChild("Humanoid") then
+                changePlayerName(player)
+            end
+        end
+    end
+    
+    -- Execute the function immediately for current players
+    changeAllPlayerNames()
+    
+    -- Create connections to monitor for new characters and respawns
+    local connections = {}
+    
+    -- Monitor workspace for new characters (new players joining)
+    connections.childAdded = game:GetService("Workspace").ChildAdded:Connect(function(child)
+        if child:IsA("Model") and child:FindFirstChild("Humanoid") then
+            -- Wait for character to fully load
+            spawn(function()
+                wait(0.1)
+                changePlayerName(child)
+                
+                -- Monitor this character for respawns by watching for nametag changes
+                local nametagConnection
+                nametagConnection = child.ChildAdded:Connect(function(part)
+                    if part.Name == "Head" then
+                        spawn(function()
+                            wait(0.5) -- Wait for nametag to load
+                            changePlayerName(child)
+                        end)
+                    end
+                end)
+            end)
+        end
+    end)
+    
+    -- Monitor players service for character spawning (respawns and rejoins)
+    connections.playerAdded = game:GetService("Players").PlayerAdded:Connect(function(player)
+        if player ~= localPlayer then
+            -- Handle when player's character spawns (first time and respawns)
+            player.CharacterAdded:Connect(function(character)
+                spawn(function()
+                    wait(0.5) -- Wait for character to fully load
+                    changePlayerName(character)
+                end)
+            end)
+            
+            -- If player already has a character when they join, change their name immediately
+            if player.Character then
+                spawn(function()
+                    wait(0.5)
+                    changePlayerName(player.Character)
+                end)
+            end
+        end
+    end)
+    
+    -- Handle existing players' respawns and ensure they get renamed
+    for _, player in pairs(game:GetService("Players"):GetPlayers()) do
+        if player ~= localPlayer then
+            -- Add character spawning listener for existing players
+            player.CharacterAdded:Connect(function(character)
+                spawn(function()
+                    wait(0.5) -- Wait for character to fully load
+                    changePlayerName(character)
+                end)
+            end)
+            
+            -- If existing player already has a character, change their name immediately
+            if player.Character then
+                spawn(function()
+                    wait(0.5)
+                    changePlayerName(player.Character)
+                end)
+            end
+        end
+    end
+end
+})
+altscript:AddButton({
+	Name = "導遊腳本",
+	Callback = function()
+    loadstring(game:HttpGet(("https://raw.githubusercontent.com/rty-lol/script/refs/heads/main/.gitignore")))()
+    end
+})
+
