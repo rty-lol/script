@@ -10,7 +10,7 @@ local badge = Window:MakeTab({
 	Name = "徽章",
 	PremiumOnly = false
     })
-    local Anti = Window:MakeTab({
+local anti = Window:MakeTab({
     Name = "基礎",
     PremiumOnly = false
 })
