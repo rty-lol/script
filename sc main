@@ -15,13 +15,20 @@ script:AddButton({
 	Name = "主要腳本",
 	Callback = function()
     loadstring(game:HttpGet(("https://raw.githubusercontent.com/rty-lol/script/refs/heads/main/catlyn%20script%20remake")))()
-OrionLib:Destroy()
-end
+    end
+    OrionLib:Destroy()
 })
 script:AddButton({
 	Name = "導遊腳本",
 	Callback = function()
-    loadstring(game:HttpGet(("https://raw.githubusercontent.com/rty-lol/script/refs/heads/main/.gitignore")))()
-OrionLib:Destroy()    
-end
+    loadstring(game:HttpGet(("https://raw.githubusercontent.com/rty-lol/script/refs/heads/main/sc%20guide")))()
+    end
+    OrionLib:Destroy()
+})
+script:AddButton({
+	Name = "巴西腳本",
+	Callback = function()
+    loadstring(game:HttpGet(("https://raw.githubusercontent.com/rty-lol/script/refs/heads/main/sc%20brazil")))()
+    end
+    OrionLib:Destroy()
 })
