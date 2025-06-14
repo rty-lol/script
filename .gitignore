@@ -1,41 +1,358 @@
-# Compiled Lua sources
-luac.out
+local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua")))()
+local Window = OrionLib:MakeWindow({IntroText = "貓玲的導遊腳本", Name = "貓玲的腳本 Remake", HidePremium = false, SaveConfig = true, ConfigFolder = "貓玲的腳本 Remake"})
+OrionLib:MakeNotification({
+	Name = "導遊腳本已載入!",
+	Content = "擁有者:貓玲",
+	Image = "IntroIcon = rbxassetid://15315284749",
+	Time = 5
+})
+if game.Workspace:FindFirstChild("VoidPart") == nil then
+local VoidPart = Instance.new("Part", workspace)
+VoidPart.Position = Vector3.new(538, 55, -231)
+VoidPart.Name = "VoidPart"
+VoidPart.Size = Vector3.new(2048, 11, 2048)
+VoidPart.Anchored = true
+VoidPart.Transparency = 1
+VoidPart.CanCollide = false
 
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
+local Safe = Instance.new("Part", VoidPart)
+Safe.Position = Vector3.new(595, 120, -330)
+Safe.Name = "Safe"
+Safe.Size = Vector3.new(2000, 10, 2000)
+Safe.Anchored = true
+Safe.Transparency = 0.5 
+Safe.CanCollide = true
+end
 
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
+local TP = Window:MakeTab({
+	Name = "傳送&開關",
+	PremiumOnly = false
+})
+local fight = Window:MakeTab({
+	Name = "戰鬥",
+	PremiumOnly = false
+})
+local anti = Window:MakeTab({
+	Name = "基礎",
+	PremiumOnly = false
+})
+TP:AddButton({
+	Name = "四顆心打導遊",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3258, -68, 823)
+wait(2.8)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace["the cube of life"].Part.CFrame
+wait(0.5)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace["Big Heart"].CFrame
+wait(1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.ShackLever.Base.CFrame
+wait(0.5)
+for i,v in pairs(game.Workspace:GetDescendants()) do
+                    if v.Name == "ShackLever" and v:FindFirstChild("ClickDetector") then
+fireclickdetector(v.ClickDetector, 0)
+fireclickdetector(v.ClickDetector, 1)
+                    end
+                end
+  	end 
+})
+TP:AddButton({
+	Name = "打導遊",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3258, -68, 823)
+wait(2)
+for i,v in pairs(game.Workspace:GetDescendants()) do
+                    if v.Name == "ShackLever" and v:FindFirstChild("ClickDetector") then
+fireclickdetector(v.ClickDetector, 0)
+fireclickdetector(v.ClickDetector, 1)
+                    end
+                end
+  	end 
+})
 
-# Precompiled Headers
-*.gch
-*.pch
+fight:AddToggle({
+	Name = "攻擊導彈",
+	Default = false,
+	Callback = function(Value)
+_G.BringTrask = Value
+while _G.BringTrask do
+if game.Workspace:FindFirstChild("TrackGloveMissile") then
+for i,v in pairs(game.Workspace:GetChildren()) do
+if v.Name == "TrackGloveMissile" then
+if game.Players.LocalPlayer.Backpack:FindFirstChild("Lantern") then
+game.Players.LocalPlayer.Backpack:FindFirstChild("Lantern").Parent = game.Players.LocalPlayer.Character
+elseif game.Players.LocalPlayer.Character:FindFirstChild("Lantern") then
+if game.Workspace:FindFirstChild("TrackGloveMissile") and game.Players.LocalPlayer.Character:FindFirstChild("Lantern") then
+game.Players.LocalPlayer.Character:FindFirstChild("Lantern"):Activate()
+if game.Players.LocalPlayer.Character:FindFirstChild("Lantern") and game.Players.LocalPlayer.Character.Lantern:FindFirstChild("Network") then
+game:GetService("Players").LocalPlayer.Character.Lantern.Network:FireServer("Hit", v)
+end
+end
+end
+end
+end
+end
+task.wait()
+end
+	end    
+})
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
+fight:AddToggle({
+	Name = "攻擊複製人",
+	Default = false,
+	Callback = function(Value)
+_G.FightReplica = Value
+while _G.FightReplica do
+if game.Workspace:FindFirstChild("ReplicaNPC") then
+for i,v in pairs(game.workspace:GetChildren()) do
+if v.Name == "ReplicaNPC" and v:FindFirstChild("HumanoidRootPart") then
+if game.Players.LocalPlayer.Backpack:FindFirstChild("Lantern") then
+game.Players.LocalPlayer.Backpack:FindFirstChild("Lantern").Parent = game.Players.LocalPlayer.Character
+elseif game.Players.LocalPlayer.Character:FindFirstChild("Lantern") then
+if game.Workspace:FindFirstChild("ReplicaNPC") and game.Players.LocalPlayer.Character:FindFirstChild("Lantern") then
+game.Players.LocalPlayer.Character:FindFirstChild("Lantern"):Activate()
+if game.Players.LocalPlayer.Character:FindFirstChild("Lantern") and game.Players.LocalPlayer.Character.Lantern:FindFirstChild("Network") then
+game:GetService("Players").LocalPlayer.Character.Lantern.Network:FireServer("Hit", v.HumanoidRootPart)
+end
+end
+end
+end
+end
+end
+task.wait()
+end
+	end    
+})
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+fight:AddToggle({
+	Name = "攻擊石像",
+	Default = false,
+	Callback = function(Value)
+_G.FightGolem = Value
+while _G.FightGolem do
+if game.Workspace:FindFirstChild("golem") and game.Workspace.golem:FindFirstChild("Hitbox") then
+for i,v in pairs(game.Workspace:GetChildren()) do
+if v.Name == "golem" and v:FindFirstChild("Hitbox") then
+if game.Players.LocalPlayer.Backpack:FindFirstChild("Lantern") then
+game.Players.LocalPlayer.Backpack:FindFirstChild("Lantern").Parent = game.Players.LocalPlayer.Character
+elseif game.Players.LocalPlayer.Character:FindFirstChild("Lantern") then
+if game.Workspace:FindFirstChild("golem") and game.Players.LocalPlayer.Character:FindFirstChild("Lantern") then
+game.Players.LocalPlayer.Character:FindFirstChild("Lantern"):Activate()
+if game.Players.LocalPlayer.Character:FindFirstChild("Lantern") and game.Players.LocalPlayer.Character.Lantern:FindFirstChild("Network") then
+game:GetService("Players").LocalPlayer.Character.Lantern.Network:FireServer("Hit", v.Hitbox)
+end
+end
+end
+end
+end
+elseif game.Workspace:FindFirstChild("DungeonGolem") then
+for i,v in pairs(game.Workspace:GetChildren()) do
+if v.Name == "DungeonGolem" and v:FindFirstChild("Cube.001") then
+if game.Players.LocalPlayer.Backpack:FindFirstChild("Lantern") then
+game.Players.LocalPlayer.Backpack:FindFirstChild("Lantern").Parent = game.Players.LocalPlayer.Character
+elseif game.Players.LocalPlayer.Character:FindFirstChild("Lantern") then
+if game.Workspace:FindFirstChild("DungeonGolem") and game.Players.LocalPlayer.Character:FindFirstChild("Lantern") then
+game.Players.LocalPlayer.Character:FindFirstChild("Lantern"):Activate()
+if game.Players.LocalPlayer.Character:FindFirstChild("Lantern") and game.Players.LocalPlayer.Character.Lantern:FindFirstChild("Network") then
+game:GetService("Players").LocalPlayer.Character.Lantern.Network:FireServer("Hit", v:FindFirstChild("Cube.001"))
+end
+end
+end
+end
+end
+end
+task.wait()
+end
+	end    
+})
+fight:AddToggle({
+	Name = "攻擊導遊",
+	Default = false,
+	Callback = function(Value)
+_G.FightBossFinal = Value
+while _G.FightBossFinal do
+if game.Workspace:FindFirstChild("GuideNPC") then
+for i,v in pairs(game.Workspace:GetChildren()) do
+if v.Name == "GuideNPC" and v:FindFirstChild("HumanoidRootPart") then
+if game.Players.LocalPlayer.Backpack:FindFirstChild("Lantern") then
+game.Players.LocalPlayer.Backpack:FindFirstChild("Lantern").Parent = game.Players.LocalPlayer.Character
+elseif game.Players.LocalPlayer.Character:FindFirstChild("Lantern") then
+if game.Workspace:FindFirstChild("GuideNPC") and game.Players.LocalPlayer.Character:FindFirstChild("Lantern") then
+game.Players.LocalPlayer.Character:FindFirstChild("Lantern"):Activate()
+if game.Players.LocalPlayer.Character:FindFirstChild("Lantern") and game.Players.LocalPlayer.Character.Lantern:FindFirstChild("Network") then
+game:GetService("Players").LocalPlayer.Character.Lantern.Network:FireServer("Hit", v.HumanoidRootPart)
+end
+end
+end
+end
+end
+end
+task.wait()
+end
+	end    
+})
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+fight:AddButton({
+	Name = "攻擊邪教馬鈴薯",
+	Callback = function()
+if game.Workspace:FindFirstChild("PotatoLord") then
+for i,v in pairs(game.workspace:GetChildren()) do
+if v.Name == "PotatoLord" and v:FindFirstChild("HumanoidRootPart") then
+if game.Players.LocalPlayer.Backpack:FindFirstChild("Lantern") then
+game.Players.LocalPlayer.Backpack:FindFirstChild("Lantern").Parent = game.Players.LocalPlayer.Character
+elseif game.Players.LocalPlayer.Character:FindFirstChild("Lantern") then
+if game.Workspace:FindFirstChild("PotatoLord") and game.Players.LocalPlayer.Character:FindFirstChild("Lantern") then
+game.Players.LocalPlayer.Character:FindFirstChild("Lantern"):Activate()
+if game.Players.LocalPlayer.Character:FindFirstChild("Lantern") and game.Players.LocalPlayer.Character.Lantern:FindFirstChild("Network") then
+game:GetService("Players").LocalPlayer.Character.Lantern.Network:FireServer("Hit", v.HumanoidRootPart)
+end
+end
+end
+end
+end
+end
+  	end 
+})
 
+TP:AddButton({
+	Name = "初始開關",
+	Callback = function()
+for i,v in pairs(game.Workspace:GetDescendants()) do
+                    if v.Name == "Gate1Lever" and v:FindFirstChild("ClickDetector") then
+fireclickdetector(v.ClickDetector, 0)
+fireclickdetector(v.ClickDetector, 1)
+                    end
+                end
+  	end 
+})
+
+TP:AddButton({
+	Name = "傳送至安全區",
+	Callback = function()
+if game.Workspace.VoidPart:FindFirstChild("Safe") then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.VoidPart.Safe.CFrame * CFrame.new(0,25,0)
+end
+  	end 
+})
+
+TP:AddButton({
+	Name = "傳送至戰鬥區",
+	Callback = function()
+if game.Workspace.VoidPart:FindFirstChild("Safe") then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.VoidPart.Safe.CFrame * CFrame.new(0,-40,0)
+end
+  	end 
+})
+anti:AddSlider({
+	Name = "速度",
+	Min = 20,
+	Max = 1000,
+	Default = 20,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "studs/秒",
+	Callback = function(Value)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+Walkspeed = Value
+	end    
+})
+anti:AddSlider({
+	Name = "高跳",
+	Min = 50,
+	Max = 1000,
+	Default = 50,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "studs",
+	Callback = function(Value)
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+Jumppower = Value
+	end    
+})
+anti:AddTextbox({
+	Name = "飛行速度",
+	Default = "Userspeed",
+	TextDisappear = false,
+	Callback = function(Value)
+_G.SetSpeedFly = Value
+	end	  
+})
+
+_G.SetSpeedFly = 100
+anti:AddToggle({
+	Name = "飛行",
+	Default = false,
+	Callback = function(Value)
+	 _G.StartFly = Value
+if _G.StartFly == false then
+if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler:Destroy()
+game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler:Destroy()
+game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+end
+end
+while _G.StartFly do
+if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.MaxForce = Vector3.new(9e9,9e9,9e9)
+game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.MaxTorque = Vector3.new(9e9,9e9,9e9)
+game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
+game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.CFrame = Workspace.CurrentCamera.CoordinateFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = Vector3.new()
+if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X > 0 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + game.Workspace.CurrentCamera.CFrame.RightVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X * _G.SetSpeedFly)
+end
+if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X < 0 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + game.Workspace.CurrentCamera.CFrame.RightVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().X * _G.SetSpeedFly)
+end
+if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z > 0 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - game.Workspace.CurrentCamera.CFrame.LookVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z * _G.SetSpeedFly)
+end
+if require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z < 0 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - game.Workspace.CurrentCamera.CFrame.LookVector * (require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")):GetMoveVector().Z * _G.SetSpeedFly)
+end
+elseif game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") == nil and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") == nil then
+local bv = Instance.new("BodyVelocity")
+local bg = Instance.new("BodyGyro")
+
+bv.Name = "VelocityHandler"
+bv.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+bv.MaxForce = Vector3.new(0,0,0)
+bv.Velocity = Vector3.new(0,0,0)
+
+bg.Name = "GyroHandler"
+bg.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+bg.MaxTorque = Vector3.new(0,0,0)
+bg.P = 1000
+bg.D = 50
+end
+task.wait()
+end
+	end    
+})
+anti:AddToggle({
+	Name = "防虛空",
+	Default = false,
+	Callback = function(Value)
+game.Workspace.VoidPart.CanCollide = Value
+if Value == true then
+game.Workspace.VoidPart.Transparency = 0.5
+else
+game.Workspace.VoidPart.Transparency = 1
+end
+	end    
+})
+
+anti:AddToggle({
+	Name = "防石牆",
+	Default = false,
+	Callback = function(Value)
+		_G.AntiWall = Value
+while _G.AntiWall do
+for i,v in pairs(game.Workspace:GetChildren()) do
+                    if v.Name == "PusherWall" then
+                        v.CanCollide = false
+                    end
+                end
+task.wait()
+end
+	end    
+})
