@@ -1,4 +1,5 @@
 loadstring(game:HttpGet(("https://raw.githubusercontent.com/rty-lol/script/refs/heads/main/sc%20nametag%20changer")))()
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/rty-lol/yrnl-slapbattles/refs/heads/main/safe%20zone")))()
 local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua")))()
 local Window = OrionLib:MakeWindow({IntroText = "貓玲的腳本 Remake", Name = "貓玲的腳本 Remake", HidePremium = false, SaveConfig = true, ConfigFolder = "貓玲的腳本 Remake"})
 OrionLib:MakeNotification({
@@ -48,34 +49,14 @@ local Afk = Anti:AddSection({
 	Name = "防掛機",
 })
 
-TP:AddButton({
-	Name = "創建安全區",
-	Callback = function()      	
-        Platform = Instance.new("Part")
-		Platform.Size = Vector3.new(5000, 5, 5000)
-        Platform.Position = Vector3.new(5122, 110, 9513)
-        Platform.Anchored = true
-        Platform.CanCollide = true
-        Platform.Transparency = 0.5
-        Platform.Material = Enum.Material.SmoothPlastic
-        Platform.Color = Color3.fromRGB(150, 150, 150)
-        Platform.Name = "CustomPlatform"
-        Platform.Parent = Workspace
-end
-})
-TP:AddButton({
-	Name = "傳送至安全區(先創建才能傳送至安全區!)",
-	Callback = function()      	
-    local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
-    rootPart.CFrame = CFrame.new(5122, 115, 9513)
-	end
-})
 TP:AddDropdown({
 	Name = "傳送",
 	Default = "",
-	Options = {"戰鬥場", "大廳", "地下室", "巴西", "果實島", "盤子", "大砲島", "密碼板", "摩埃島", "前島", "右島", "左島"},
+	Options = {"安全區","戰鬥場", "大廳", "地下室", "巴西", "果實島", "盤子", "大砲島", "密碼板", "摩埃島", "前島", "右島", "左島"},
 	Callback = function(Value)
-if Value == "戰鬥場" then
+if Value == "安全區" then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5122, 120, 9513)
+elseif Value == "戰鬥場" then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Origo.CFrame * CFrame.new(0,-5,0)
 elseif Value == "大廳" then
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-800,328,-2.5)
